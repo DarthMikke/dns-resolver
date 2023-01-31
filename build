@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+zip -rj -FS ./dns-resolver.zip src/*

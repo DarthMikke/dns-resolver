@@ -1,0 +1,4 @@
+- [ ] Redirect web.headspin.no addresses to static URL
+- [ ] Make a "real" extension
+- [ ] Make a popup
+- [ ] Add input for making a list of redirections
