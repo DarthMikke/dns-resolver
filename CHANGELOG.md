@@ -11,7 +11,7 @@ Added:
 - Possibility for several redirect rules
 
 
-[0.1.0] - 2022-01-31
+[0.1.0] - 2023-01-31
 -------
 
 Added:
