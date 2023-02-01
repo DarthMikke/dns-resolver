@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "DNS resolver",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Resolve specific domain names to custom IP address.",
     "browser_specific_settings": {
         "gecko": {
