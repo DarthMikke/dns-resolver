@@ -23,7 +23,6 @@ let headers = {}
 console.log("Heisann");
 
 function listener(requestDetails) {
-  console.debug(requestDetails);
   let url = new URL(requestDetails.url);
   const originalHost = url.host;
   matchPatterns.forEach(x => {
@@ -39,6 +38,7 @@ function listener(requestDetails) {
     return;
   }
 
+  console.debug(requestDetails);
   headers[requestDetails.requestId] = [
     {
       "name": "Host",
@@ -58,13 +58,33 @@ function listener(requestDetails) {
 
 function headersListener(requestDetails) {
   console.debug(requestDetails);
-  console.debug(headers[requestDetails.requestId]);
-  if (headers[requestDetails.requestId]) {
-    return {
-      requestHeaders: headers[requestDetails.requestId],
-    };
+  if (!(headers[requestDetails.requestId])) {
+    return;
   }
-  return;
+
+  let requestHeaders = [...requestDetails.requestHeaders];
+  headers[requestDetails.requestId].forEach(update => {
+    console.debug("Inserting", update);
+    let inserted = false;
+    for (let i = 0; i < requestHeaders.length; i++) {
+      if (requestHeaders[i].name == update.name) {
+        requestHeaders[i].value = update.value;
+        inserted = true;
+        break;
+      }
+    }
+    if (!inserted) {
+      requestHeaders.push(update);
+    }
+    if (inserted) {
+      console.debug("Inserted.");
+    }
+  });
+  console.debug("New request headers:", requestHeaders);
+
+  return {
+    requestHeaders: requestHeaders,
+  };
 }
 
 
